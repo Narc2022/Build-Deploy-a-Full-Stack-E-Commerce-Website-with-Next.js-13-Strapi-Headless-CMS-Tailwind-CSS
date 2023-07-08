@@ -1,0 +1,9 @@
+{
+    "tailwindCSS.classAttributes": [
+        "className",
+        "ngClass",
+        "className=\"",
+        "className={``}",
+        "useState()"
+    ]
+}
