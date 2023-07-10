@@ -23,9 +23,10 @@ const Menu = ({ showCatMenu, setShowCatMenu }) => {
         return (
           <React.Fragment>
             {!!item?.subMenu ? (
-              <li className="cursor-pointer flex items-center gap-2 relative" 
-              onMouseEnter={()=>setShowCatMenu(true)}
-              onMouseLeave={()=>setShowCatMenu(false)}
+              <li
+                className="cursor-pointer flex items-center gap-2 relative"
+                onMouseEnter={() => setShowCatMenu(true)}
+                onMouseLeave={() => setShowCatMenu(false)}
               >
                 {item.name}
                 <BsChevronDown size={14} />
@@ -33,7 +34,7 @@ const Menu = ({ showCatMenu, setShowCatMenu }) => {
                   <ul className="bg-white absolute top-6 left-0 min-w-[250px] px-1 py-1 text-black shadow-lg">
                     {subMenuData.map((submenu) => {
                       return (
-                        <Link href={`/`} key={submenu.id}>
+                        <Link href={`/category/no`} key={submenu.id}>
                           <li className="h-12 flex justify-between items-center px-3 hover:bg-black/[0.03] rounded-md">
                             {submenu.name}
                             <span className="opacity-50 text-sm">78</span>

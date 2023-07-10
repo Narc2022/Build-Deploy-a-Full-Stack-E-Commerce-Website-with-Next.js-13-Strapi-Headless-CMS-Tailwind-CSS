@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer'
 import Header from '@/components/HEADER'
 import '@/styles/globals.css'
 import Head from 'next/head'
@@ -24,6 +25,7 @@ export default function App({ Component, pageProps }) {
     <>
     <Header />
     <Component {...pageProps} />
+    <Footer />
     </>
 
   </>

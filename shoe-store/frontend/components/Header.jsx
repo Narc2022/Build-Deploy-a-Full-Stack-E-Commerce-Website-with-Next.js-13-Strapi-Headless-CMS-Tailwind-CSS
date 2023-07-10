@@ -10,9 +10,33 @@ import { VscChromeClose } from "react-icons/vsc";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [showCatMenu, setShowCatMenu] = useState(true);
+  const [showCatMenu, setShowCatMenu] = useState(false);
   const [show, setShow] = useState("translate-y-0");
-  const [lastScrollY, stLastScrollY] = useState(0);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  
+  const controlNavbar = () => {
+    if (window.scrollY > 200) {
+        if (window.scrollY > lastScrollY && !mobileMenu) {
+            setShow("-translate-y-[80px]");
+        } else {
+            setShow("shadow-sm");
+        }
+    } else {
+        setShow("translate-y-0");
+    }
+    setLastScrollY(window.scrollY);
+};
+
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", controlNavbar);
+    return () => {
+        window.removeEventListener("scroll", controlNavbar);
+    };
+}, [lastScrollY]);
+  
+
+
   return (
     <header
       className={`w-full h-[50px] md:h-[80px] bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show}`}
@@ -25,18 +49,22 @@ const Header = () => {
        { mobileMenu && <MenuMobile showCatMenu={showCatMenu} setShowCatMenu={setShowCatMenu} setMobileMenu={setMobileMenu} />}
         {/* Icon-start */}
         <div className="flex items-center gap-2 text-black">
+          <Link href="/cart">
           <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
             <IoMdHeartEmpty className="text-[19px] md:text-[24px]" />
             <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justfy-center items-center px-[2px] md:px-[5px]">
               51
             </div>
           </div>
-          <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+          </Link>
+          <Link href="/cart">
+          <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative" >
             <BsCart className="text-[15px] md:text-[20px]" />
             <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justfy-center items-center px-[2px] md:px-[5px]">
               5
             </div>
           </div>
+          </Link>
         </div>
         {/* Icon-end */}
         {/* Mobile icon start */}
